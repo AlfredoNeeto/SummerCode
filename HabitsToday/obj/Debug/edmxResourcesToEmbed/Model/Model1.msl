@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HabitsTodayModelStoreContainer" CdmEntityContainer="HabitsTodayEntities">
+    <EntitySetMapping Name="HABITLOGS">
+      <EntityTypeMapping TypeName="HabitsTodayModel.HABITLOGS">
+        <MappingFragment StoreEntitySet="HABITLOGS">
+          <ScalarProperty Name="IDHABITLOGS" ColumnName="IDHABITLOGS" />
+          <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+          <ScalarProperty Name="IDHABITS" ColumnName="IDHABITS" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ISCOMPLETED" ColumnName="ISCOMPLETED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HABITS">
+      <EntityTypeMapping TypeName="HabitsTodayModel.HABITS">
+        <MappingFragment StoreEntitySet="HABITS">
+          <ScalarProperty Name="EMOJI" ColumnName="EMOJI" />
+          <ScalarProperty Name="IDHABITS" ColumnName="IDHABITS" />
+          <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+          <ScalarProperty Name="HABITNAME" ColumnName="HABITNAME" />
+          <ScalarProperty Name="HABITDESCRIPTION" ColumnName="HABITDESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="HabitsTodayModel.USERS">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

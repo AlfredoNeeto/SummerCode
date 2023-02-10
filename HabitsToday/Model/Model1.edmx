@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HabitsTodayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HABITLOGS">
+          <Key>
+            <PropertyRef Name="IDHABITLOGS" />
+          </Key>
+          <Property Name="IDHABITLOGS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUSER" Type="int" Nullable="false" />
+          <Property Name="IDHABITS" Type="int" Nullable="false" />
+          <Property Name="DATE" Type="date" Nullable="false" />
+          <Property Name="ISCOMPLETED" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HABITS">
+          <Key>
+            <PropertyRef Name="IDHABITS" />
+          </Key>
+          <Property Name="IDHABITS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUSER" Type="int" Nullable="false" />
+          <Property Name="HABITNAME" Type="varchar(max)" Nullable="false" />
+          <Property Name="HABITDESCRIPTION" Type="text" />
+          <Property Name="EMOJI" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="IDUSER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar(max)" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__HABITLOGS__IDHAB__3C69FB99">
+          <End Role="HABITS" Type="Self.HABITS" Multiplicity="1" />
+          <End Role="HABITLOGS" Type="Self.HABITLOGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HABITS">
+              <PropertyRef Name="IDHABITS" />
+            </Principal>
+            <Dependent Role="HABITLOGS">
+              <PropertyRef Name="IDHABITS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HABITLOGS__IDUSE__3B75D760">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="HABITLOGS" Type="Self.HABITLOGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="IDUSER" />
+            </Principal>
+            <Dependent Role="HABITLOGS">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HABITS__IDUSER__38996AB5">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="HABITS" Type="Self.HABITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="IDUSER" />
+            </Principal>
+            <Dependent Role="HABITS">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HabitsTodayModelStoreContainer">
+          <EntitySet Name="HABITLOGS" EntityType="Self.HABITLOGS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HABITS" EntityType="Self.HABITS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HABITLOGS__IDHAB__3C69FB99" Association="Self.FK__HABITLOGS__IDHAB__3C69FB99">
+            <End Role="HABITS" EntitySet="HABITS" />
+            <End Role="HABITLOGS" EntitySet="HABITLOGS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HABITLOGS__IDUSE__3B75D760" Association="Self.FK__HABITLOGS__IDUSE__3B75D760">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="HABITLOGS" EntitySet="HABITLOGS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HABITS__IDUSER__38996AB5" Association="Self.FK__HABITS__IDUSER__38996AB5">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="HABITS" EntitySet="HABITS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HabitsTodayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HABITLOGS">
+          <Key>
+            <PropertyRef Name="IDHABITLOGS" />
+          </Key>
+          <Property Name="IDHABITLOGS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUSER" Type="Int32" Nullable="false" />
+          <Property Name="IDHABITS" Type="Int32" Nullable="false" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ISCOMPLETED" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="HABITS" Relationship="Self.FK__HABITLOGS__IDHAB__3C69FB99" FromRole="HABITLOGS" ToRole="HABITS" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK__HABITLOGS__IDUSE__3B75D760" FromRole="HABITLOGS" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="HABITS">
+          <Key>
+            <PropertyRef Name="IDHABITS" />
+          </Key>
+          <Property Name="IDHABITS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUSER" Type="Int32" Nullable="false" />
+          <Property Name="HABITNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HABITDESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HABITLOGS" Relationship="Self.FK__HABITLOGS__IDHAB__3C69FB99" FromRole="HABITS" ToRole="HABITLOGS" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK__HABITS__IDUSER__38996AB5" FromRole="HABITS" ToRole="USERS" />
+          <Property Name="EMOJI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="IDUSER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="HABITLOGS" Relationship="Self.FK__HABITLOGS__IDUSE__3B75D760" FromRole="USERS" ToRole="HABITLOGS" />
+          <NavigationProperty Name="HABITS" Relationship="Self.FK__HABITS__IDUSER__38996AB5" FromRole="USERS" ToRole="HABITS" />
+        </EntityType>
+        <Association Name="FK__HABITLOGS__IDHAB__3C69FB99">
+          <End Role="HABITS" Type="Self.HABITS" Multiplicity="1" />
+          <End Role="HABITLOGS" Type="Self.HABITLOGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HABITS">
+              <PropertyRef Name="IDHABITS" />
+            </Principal>
+            <Dependent Role="HABITLOGS">
+              <PropertyRef Name="IDHABITS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HABITLOGS__IDUSE__3B75D760">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="HABITLOGS" Type="Self.HABITLOGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="IDUSER" />
+            </Principal>
+            <Dependent Role="HABITLOGS">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HABITS__IDUSER__38996AB5">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="HABITS" Type="Self.HABITS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="IDUSER" />
+            </Principal>
+            <Dependent Role="HABITS">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HabitsTodayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HABITLOGS" EntityType="Self.HABITLOGS" />
+          <EntitySet Name="HABITS" EntityType="Self.HABITS" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" />
+          <AssociationSet Name="FK__HABITLOGS__IDHAB__3C69FB99" Association="Self.FK__HABITLOGS__IDHAB__3C69FB99">
+            <End Role="HABITS" EntitySet="HABITS" />
+            <End Role="HABITLOGS" EntitySet="HABITLOGS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HABITLOGS__IDUSE__3B75D760" Association="Self.FK__HABITLOGS__IDUSE__3B75D760">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="HABITLOGS" EntitySet="HABITLOGS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HABITS__IDUSER__38996AB5" Association="Self.FK__HABITS__IDUSER__38996AB5">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="HABITS" EntitySet="HABITS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HabitsTodayModelStoreContainer" CdmEntityContainer="HabitsTodayEntities">
+          <EntitySetMapping Name="HABITLOGS">
+            <EntityTypeMapping TypeName="HabitsTodayModel.HABITLOGS">
+              <MappingFragment StoreEntitySet="HABITLOGS">
+                <ScalarProperty Name="IDHABITLOGS" ColumnName="IDHABITLOGS" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="IDHABITS" ColumnName="IDHABITS" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="ISCOMPLETED" ColumnName="ISCOMPLETED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HABITS">
+            <EntityTypeMapping TypeName="HabitsTodayModel.HABITS">
+              <MappingFragment StoreEntitySet="HABITS">
+                <ScalarProperty Name="EMOJI" ColumnName="EMOJI" />
+                <ScalarProperty Name="IDHABITS" ColumnName="IDHABITS" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="HABITNAME" ColumnName="HABITNAME" />
+                <ScalarProperty Name="HABITDESCRIPTION" ColumnName="HABITDESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="HabitsTodayModel.USERS">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

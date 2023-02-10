@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HabitsTodayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="HABITLOGS">
+    <Key>
+      <PropertyRef Name="IDHABITLOGS" />
+    </Key>
+    <Property Name="IDHABITLOGS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDUSER" Type="int" Nullable="false" />
+    <Property Name="IDHABITS" Type="int" Nullable="false" />
+    <Property Name="DATE" Type="date" Nullable="false" />
+    <Property Name="ISCOMPLETED" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HABITS">
+    <Key>
+      <PropertyRef Name="IDHABITS" />
+    </Key>
+    <Property Name="IDHABITS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDUSER" Type="int" Nullable="false" />
+    <Property Name="HABITNAME" Type="varchar(max)" Nullable="false" />
+    <Property Name="HABITDESCRIPTION" Type="text" />
+    <Property Name="EMOJI" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="IDUSER" />
+    </Key>
+    <Property Name="IDUSER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERNAME" Type="varchar(max)" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__HABITLOGS__IDHAB__3C69FB99">
+    <End Role="HABITS" Type="Self.HABITS" Multiplicity="1" />
+    <End Role="HABITLOGS" Type="Self.HABITLOGS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HABITS">
+        <PropertyRef Name="IDHABITS" />
+      </Principal>
+      <Dependent Role="HABITLOGS">
+        <PropertyRef Name="IDHABITS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HABITLOGS__IDUSE__3B75D760">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="HABITLOGS" Type="Self.HABITLOGS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUSER" />
+      </Principal>
+      <Dependent Role="HABITLOGS">
+        <PropertyRef Name="IDUSER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HABITS__IDUSER__38996AB5">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="HABITS" Type="Self.HABITS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="IDUSER" />
+      </Principal>
+      <Dependent Role="HABITS">
+        <PropertyRef Name="IDUSER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HabitsTodayModelStoreContainer">
+    <EntitySet Name="HABITLOGS" EntityType="Self.HABITLOGS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HABITS" EntityType="Self.HABITS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__HABITLOGS__IDHAB__3C69FB99" Association="Self.FK__HABITLOGS__IDHAB__3C69FB99">
+      <End Role="HABITS" EntitySet="HABITS" />
+      <End Role="HABITLOGS" EntitySet="HABITLOGS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HABITLOGS__IDUSE__3B75D760" Association="Self.FK__HABITLOGS__IDUSE__3B75D760">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="HABITLOGS" EntitySet="HABITLOGS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HABITS__IDUSER__38996AB5" Association="Self.FK__HABITS__IDUSER__38996AB5">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="HABITS" EntitySet="HABITS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

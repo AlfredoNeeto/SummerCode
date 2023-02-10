@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="389cad33db79422bb398646c1251184d" Name="Diagram1">
+        <EntityTypeShape EntityType="HabitsTodayModel.HABITLOGS" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HabitsTodayModel.HABITS" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HabitsTodayModel.USERS" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="HabitsTodayModel.FK__HABITLOGS__IDHAB__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="HabitsTodayModel.FK__HABITLOGS__IDUSE__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="HabitsTodayModel.FK__HABITS__IDUSER__38996AB5" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
